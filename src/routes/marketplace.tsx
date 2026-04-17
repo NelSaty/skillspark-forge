@@ -84,31 +84,29 @@ function MarketplacePage() {
                 className="w-full rounded-lg border border-border bg-background py-2.5 pl-10 pr-3 text-sm focus:border-primary focus:outline-none"
               />
             </div>
-            {tab === "projects" && (
+            <div className={cn(tab !== "projects" && "invisible pointer-events-none")} aria-hidden={tab !== "projects"}>
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value)}
-                className="rounded-lg border border-border bg-background px-3 py-2.5 text-sm font-medium focus:border-primary focus:outline-none"
+                className="h-full w-full rounded-lg border border-border bg-background px-3 py-2.5 text-sm font-medium focus:border-primary focus:outline-none"
               >
                 <option>Newest</option>
                 <option>Highest Pay</option>
                 <option>Best Match</option>
               </select>
-            )}
-            {tab === "projects" && (
-              <div className="flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-2 text-sm">
-                <span className="text-xs font-semibold text-muted-foreground">Up to ₹{(budget / 1000).toFixed(0)}K</span>
-                <input
-                  type="range"
-                  min={5000}
-                  max={500000}
-                  step={5000}
-                  value={budget}
-                  onChange={(e) => setBudget(Number(e.target.value))}
-                  className="w-32 accent-primary"
-                />
-              </div>
-            )}
+            </div>
+            <div className={cn("flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-2 text-sm", tab !== "projects" && "invisible pointer-events-none")} aria-hidden={tab !== "projects"}>
+              <span className="text-xs font-semibold text-muted-foreground whitespace-nowrap">Up to ₹{(budget / 1000).toFixed(0)}K</span>
+              <input
+                type="range"
+                min={5000}
+                max={500000}
+                step={5000}
+                value={budget}
+                onChange={(e) => setBudget(Number(e.target.value))}
+                className="w-32 accent-primary"
+              />
+            </div>
           </div>
 
           <div className="mt-3 flex flex-wrap gap-2">
