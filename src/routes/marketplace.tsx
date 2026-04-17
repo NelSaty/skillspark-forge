@@ -132,17 +132,17 @@ function MarketplacePage() {
         <div className="mt-8">
           {tab === "projects" ? (
             filteredProjects.length === 0 ? (
-              <EmptyState />
+              <EmptyState key="empty-projects" />
             ) : (
-              <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                {filteredProjects.map((p) => <ProjectCard key={p.id} project={p} />)}
+              <div key="grid-projects" className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {filteredProjects.map((p) => <ProjectCard key={`p-${p.id}`} project={p} />)}
               </div>
             )
           ) : filteredCandidates.length === 0 ? (
-            <EmptyState />
+            <EmptyState key="empty-talent" />
           ) : (
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredCandidates.map((c) => <TalentCard key={c.id} candidate={c} />)}
+            <div key="grid-talent" className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {filteredCandidates.map((c) => <TalentCard key={`c-${c.id}`} candidate={c} />)}
             </div>
           )}
         </div>
