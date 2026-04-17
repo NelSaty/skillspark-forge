@@ -17,6 +17,8 @@ import { Route as ForCollegesRouteImport } from './routes/for-colleges'
 import { Route as AssessmentRouteImport } from './routes/assessment'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardStudentRouteImport } from './routes/dashboard.student'
+import { Route as DashboardEmployerRouteImport } from './routes/dashboard.employer'
 
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
@@ -58,6 +60,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardStudentRoute = DashboardStudentRouteImport.update({
+  id: '/dashboard/student',
+  path: '/dashboard/student',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardEmployerRoute = DashboardEmployerRouteImport.update({
+  id: '/dashboard/employer',
+  path: '/dashboard/employer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -68,6 +80,8 @@ export interface FileRoutesByFullPath {
   '/for-students': typeof ForStudentsRoute
   '/marketplace': typeof MarketplaceRoute
   '/pricing': typeof PricingRoute
+  '/dashboard/employer': typeof DashboardEmployerRoute
+  '/dashboard/student': typeof DashboardStudentRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +92,8 @@ export interface FileRoutesByTo {
   '/for-students': typeof ForStudentsRoute
   '/marketplace': typeof MarketplaceRoute
   '/pricing': typeof PricingRoute
+  '/dashboard/employer': typeof DashboardEmployerRoute
+  '/dashboard/student': typeof DashboardStudentRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +105,8 @@ export interface FileRoutesById {
   '/for-students': typeof ForStudentsRoute
   '/marketplace': typeof MarketplaceRoute
   '/pricing': typeof PricingRoute
+  '/dashboard/employer': typeof DashboardEmployerRoute
+  '/dashboard/student': typeof DashboardStudentRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +119,8 @@ export interface FileRouteTypes {
     | '/for-students'
     | '/marketplace'
     | '/pricing'
+    | '/dashboard/employer'
+    | '/dashboard/student'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +131,8 @@ export interface FileRouteTypes {
     | '/for-students'
     | '/marketplace'
     | '/pricing'
+    | '/dashboard/employer'
+    | '/dashboard/student'
   id:
     | '__root__'
     | '/'
@@ -121,6 +143,8 @@ export interface FileRouteTypes {
     | '/for-students'
     | '/marketplace'
     | '/pricing'
+    | '/dashboard/employer'
+    | '/dashboard/student'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,6 +156,8 @@ export interface RootRouteChildren {
   ForStudentsRoute: typeof ForStudentsRoute
   MarketplaceRoute: typeof MarketplaceRoute
   PricingRoute: typeof PricingRoute
+  DashboardEmployerRoute: typeof DashboardEmployerRoute
+  DashboardStudentRoute: typeof DashboardStudentRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -192,6 +218,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/student': {
+      id: '/dashboard/student'
+      path: '/dashboard/student'
+      fullPath: '/dashboard/student'
+      preLoaderRoute: typeof DashboardStudentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/employer': {
+      id: '/dashboard/employer'
+      path: '/dashboard/employer'
+      fullPath: '/dashboard/employer'
+      preLoaderRoute: typeof DashboardEmployerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -204,6 +244,8 @@ const rootRouteChildren: RootRouteChildren = {
   ForStudentsRoute: ForStudentsRoute,
   MarketplaceRoute: MarketplaceRoute,
   PricingRoute: PricingRoute,
+  DashboardEmployerRoute: DashboardEmployerRoute,
+  DashboardStudentRoute: DashboardStudentRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
