@@ -85,11 +85,11 @@ export function Navbar() {
               </Link>
             ))}
             <div className="mt-2 flex flex-col gap-2 border-t border-border pt-3">
-              <Button variant="outline" onClick={notify}>
-                Login
+              <Button asChild variant="outline">
+                <Link to="/auth" search={{ mode: "login" }} onClick={() => setOpen(false)}>Login</Link>
               </Button>
-              <Button onClick={notify} className="bg-gradient-button text-primary-foreground">
-                Get Started Free
+              <Button asChild className="bg-gradient-button text-primary-foreground">
+                <Link to="/auth" search={{ mode: "signup" }} onClick={() => setOpen(false)}>Get Started Free</Link>
               </Button>
             </div>
           </div>
